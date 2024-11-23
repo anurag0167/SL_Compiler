@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "lexerf.h"
-
+/*
 int main(int argc, char* argv[])
 {
     if(argc != 2)
@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+
     printf("Tokenizing the input file '%s':\n\n", argv[1]);
 
     Token token;
@@ -26,9 +27,11 @@ int main(int argc, char* argv[])
     {
         getNextToken(file, &token);
         printf("Token Type: %d, Text: %s\n", token.type, token.text);
+        printf("hello world");
     }
     while(token.type != TOKEN_EOF);
 
     fclose(file);
     return 0;
 }
+*/
