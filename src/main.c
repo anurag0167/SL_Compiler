@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include "lexerf.h"
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
+int main(int argc, char* argv[])
+{
+    if(argc != 2)
+    {
         printf("Usage: %s <source_file>\n", argv[0]);
         return 1;
     }
 
     // Open the source file
-    FILE *file = fopen(argv[1], "r");
-    if (!file) {
+    FILE* file = fopen(argv[1], "r");
+    if(!file)
+    {
         perror("Failed to open file");
         return 1;
     }
@@ -19,10 +22,12 @@ int main(int argc, char *argv[]) {
     Token token;
 
     // Tokenize the input file
-    do {
+    do
+    {
         getNextToken(file, &token);
         printf("Token Type: %d, Text: %s\n", token.type, token.text);
-    } while (token.type != TOKEN_EOF);
+    }
+    while(token.type != TOKEN_EOF);
 
     fclose(file);
     return 0;

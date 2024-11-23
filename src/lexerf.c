@@ -1,19 +1,25 @@
 #include "lexerf.h"
 
 // Function to get the next token from the file
-void getNextToken(FILE *file, Token *token) {
+void getNextToken(FILE* file, Token* token)
+{
     int c;
 
-    while ((c = fgetc(file)) != EOF) {
+    while((c = fgetc(file)) != EOF)
+    {
         // Skip whitespace
-        if (isspace(c)) continue;
+        if(isspace(c))
+            continue;
 
         // Handle identifiers and keywords
-        if (isalpha(c)) {
+        if(isalpha(c))
+        {
             int len = 0;
             token->text[len++] = c;
-            while (isalnum(c = fgetc(file))) {
-                if (len < MAX_TOKEN_LEN - 1) {
+            while(isalnum(c = fgetc(file)))
+            {
+                if(len < MAX_TOKEN_LEN - 1)
+                {
                     token->text[len++] = c;
                 }
             }
@@ -21,22 +27,30 @@ void getNextToken(FILE *file, Token *token) {
             token->text[len] = '\0';
 
             // Keyword detection
-            if (strcmp(token->text, "int") == 0) {
+            if(strcmp(token->text, "int") == 0)
+            {
                 token->type = TOKEN_INT;
-            } else if (strcmp(token->text, "if") == 0) {
+            }
+            else if(strcmp(token->text, "if") == 0)
+            {
                 token->type = TOKEN_IF;
-            } else {
+            }
+            else
+            {
                 token->type = TOKEN_IDENTIFIER;
             }
             return;
         }
 
         // Handle numbers
-        if (isdigit(c)) {
+        if(isdigit(c))
+        {
             int len = 0;
             token->text[len++] = c;
-            while (isdigit(c = fgetc(file))) {
-                if (len < MAX_TOKEN_LEN - 1) {
+            while(isdigit(c = fgetc(file)))
+            {
+                if(len < MAX_TOKEN_LEN - 1)
+                {
                     token->text[len++] = c;
                 }
             }
@@ -47,7 +61,8 @@ void getNextToken(FILE *file, Token *token) {
         }
 
         // Handle operators and symbols
-        switch (c) {
+        switch(c)
+        {
             case '=':
                 token->type = TOKEN_ASSIGN;
                 token->text[0] = '=';
